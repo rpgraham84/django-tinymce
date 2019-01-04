@@ -11,7 +11,10 @@ import tinymce.settings
 from django import forms
 from django.conf import settings
 from django.contrib.admin import widgets as admin_widgets
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from django.forms.widgets import flatatt
 from django.utils.html import escape
 try:

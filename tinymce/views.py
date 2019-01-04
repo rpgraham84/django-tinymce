@@ -15,6 +15,11 @@ try:
 except ImportError:
     pass
 
+
+from logging import getLogger
+log = getLogger("django")
+
+
 def textareas_js(request, name, lang=None):
     """
     Returns a HttpResponse whose content is a Javscript file. The template
@@ -30,9 +35,9 @@ def textareas_js(request, name, lang=None):
 
     vars = get_language_config(lang)
     vars['content_language'] = lang
-    context = RequestContext(request, vars)
+    request.update(vars)
 
-    return HttpResponse(template.render(context),
+    return HttpResponse(template.render(request),
             content_type="application/x-javascript")
 
 def spell_check(request):

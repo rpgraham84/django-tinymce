@@ -15,7 +15,10 @@ try:
     from django.urls import reverse
 except ImportError:
     from django.core.urlresolvers import reverse
-from django.forms.widgets import flatatt
+try:
+    from django.forms.widgets import flatatt
+except ImportError:
+    from django.forms.utils import flatatt
 from django.utils.html import escape
 try:
     from collections import OrderedDict as SortedDict
